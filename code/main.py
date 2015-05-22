@@ -9,7 +9,6 @@ def read_shot_file(fname):
     raw_shot_data = pd.read_csv(fname)
     raw_shot_data.columns = [col.lower() for col in raw_shot_data.columns]
     raw_shot_data.shot_result = raw_shot_data.shot_result == "made"
-    print(raw_shot_data.columns)
     return(raw_shot_data)
 
 def print_descriptive_stats(shots_df):
@@ -42,5 +41,7 @@ if __name__ == "__main__":
     model = LogisticRegression()
 
     print("Accuracy: %f"%(get_model_accuracy(model, x, y)))
-    fig, axs = plot_partial_dependence(clf, X_train, features, feature_names=names,
+    features = [282]
+    fig, axs = plot_partial_dependence(model, x, features,
                                    n_jobs=3, grid_resolution=50)
+    plt.show()
