@@ -3,7 +3,6 @@ import matplotlib.pyplot as plt
 from numpy import newaxis
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.linear_model import LogisticRegression
-from sklearn.ensemble.partial_dependence import plot_partial_dependence
 
 def read_shot_file(fname):
     raw_shot_data = pd.read_csv(fname)
@@ -41,7 +40,3 @@ if __name__ == "__main__":
     model = LogisticRegression()
 
     print("Accuracy: %f"%(get_model_accuracy(model, x, y)))
-    features = [282]
-    fig, axs = plot_partial_dependence(model, x, features,
-                                   n_jobs=3, grid_resolution=50)
-    plt.show()
